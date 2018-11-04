@@ -1,0 +1,37 @@
+body {
+  margin: 0 20px;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin: 10;
+  text-decoration: underline;
+}
+
+label {
+  margin: 10 0;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+}
+
+.border {
+  width: 50vw;
+  margin: 10px;
+  border: 1px solid gainsboro;
+  padding: 0 5px;
+}
+
+.flex {
+  display: inline-flex;
+}
+
+h2 {
+  margin: 1;
+}
