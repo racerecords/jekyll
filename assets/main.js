@@ -32,12 +32,11 @@ function populateElement(key, value) {
   el.innerHTML = value;
 }
 
-function buildRow () {
-  var record = JSON.parse(this.responseText);
+function buildRow (reading) {
   var row = document.createElement('tr'); 
-  row.appendChild(buildData(record['number']));
-  row.appendChild(buildData(record['carclass']));
-  row.appendChild(buildData(record['reading']));
+  row.appendChild(buildData(reading['number']));
+  row.appendChild(buildData(reading['carclass']));
+  row.appendChild(buildData(reading['reading']));
   table.appendChild(row);
 }
 
@@ -48,7 +47,8 @@ function buildData (value) {
 }
 
 if (ul != null) {
-  var url = 'http://race-records.s3-website-us-east-1.amazonaws.com/records/index.json';
+  //var url = 'http://race-records.s3-website-us-east-1.amazonaws.com/records/index.json';
+  var url = 'http://localhost:4000/records/index.json';
   var oReq = new XMLHttpRequest();
   oReq.addEventListener("load", index);
   oReq.open("GET", url);
@@ -75,9 +75,17 @@ function index () {
   });
 }
 
+function new_reading () {
+  var btn = document.getElementById('new-reading-btn');
+  btn.addEventListener('click', function (event) {
+    console.log('button');
+  });
+}
+
 
 if (table != null) {
-  var path = 'http://race-records.s3-website-us-east-1.amazonaws.com/';
+  //var path = 'http://race-records.s3-website-us-east-1.amazonaws.com/';
+  var path = 'http://localhost:4000/';
   var file = localStorage.getItem('record');
   var url = path + 'records/' + file + '.json';
   console.log(url);
@@ -85,15 +93,12 @@ if (table != null) {
   oReq.addEventListener("load", reqListener);
   oReq.open("GET", url);
   oReq.send();
+  new_reading();
 };
 
-function fetchRows(ids) {
-  ids.forEach(function(id) {
-    var url = path + 'readings/' + id + '.json';
-    var oReq = new XMLHttpRequest();
-    oReq.addEventListener("load", buildRow);
-    oReq.open("GET", url);
-    oReq.send();
+function fetchRows(readings) {
+  readings.forEach(function(reading) {
+    console.log(reading);
+    buildRow(reading);
   }); 
-
 }

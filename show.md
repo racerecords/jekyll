@@ -74,6 +74,12 @@ permalink: /show/
 
 	</table>
 
+	<form>
+		<input type='text' value='test'>
+		<button id='new-reading-btn'>+</button>
+		<submit>
+	</form>
+
 	<ul class='formFooter'>
 		<label>Reader:</label>
 		<li class='flex' id='reader'></li>
